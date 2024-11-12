@@ -19,9 +19,9 @@ use App\Http\Controllers\PhotoController;
 |
 */
 
-Route::get('/about', function () {
-    return '<p>NIM: 2241760120</p><p>Nama: Lentina Abrila Putri</p>';
-});
+// Route::get('/about', function () {
+//     return '<p>NIM: 2241760120</p><p>Nama: Lentina Abrila Putri</p>';
+// });
 
 // Route::get('/user/{Lentina}', function ($name) {
 //     return 'Nama saya: '.$name;
@@ -60,3 +60,9 @@ Route::get('articles/{id}', ArticleController::class);
 Route::resource('photos', PhotoController::class)->only([
     'index', 'show']);
 Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
+
+Route::get('/greeting', function () {
+    return view('blog.hello', ['name' => 'Lentina']);
+    });
+
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
