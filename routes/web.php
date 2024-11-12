@@ -7,6 +7,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SalesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +71,20 @@ Route::get('/greeting', function () {
     });
 
 Route::get('/greeting', [WelcomeController::class, 'greeting']);
+
+// Route untuk Halaman Home
+Route::get('/home', [HomePageController::class, 'index']);
+
+// Route dengan prefix /category untuk Halaman Products
+Route::prefix('category')->group(function () {
+    Route::get('/food-beverage', [ProductController::class, 'foodBeverage']);
+    Route::get('/beauty-health', [ProductController::class, 'beautyHealth']);
+    Route::get('/home-care', [ProductController::class, 'homeCare']);
+    Route::get('/baby-kid', [ProductController::class, 'babyKid']);
+});
+
+// Route dengan parameter untuk Halaman User
+Route::get('/user/{id}/name/{name}', [UserController::class, 'showProfile']);
+
+// Route untuk Halaman Penjualan 
+Route::get('/sales', [SalesController::class, 'index']);
